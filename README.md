@@ -6,14 +6,14 @@ Our team listens to music everytime: studying, walking/driving to classes, worki
 Luiz has his favorite artists, but don't know where to find new tracks similar to his taste. 
 Bruno tried to use Spotify's "Radio" feature, which is a playlist generated from a specific track. The result: these songs seem quite random. Also, the radio keeps changing, so he "loses" good tracks on it without even knowing. 
 
-The **Damn Good Tracks** website helps with that! On it, users will be able to find recommendations of *certified fresh* tracks and albums based on an artist they like. On a high-level, an user can input whether he wants to find tracks or albums recommendations, and say what artist he wants as inspiration. Our website will then show him either a track list or top albums from artists related to the one chosen, with direct links to listem them right away on Spotify.
+The **Damn Good Tracks** website helps with that! On it, users will be able to find recommendations of *certified fresh* tracks and albums based on an artist they like. On a high-level, an user can input whether he wants to find tracks or albums recommendations, and say what artist he wants as inspiration. Our website will then show him either a track list or top albums from artists related to the one chosen, with direct links to listen to them right away on Spotify.
 
 If time permits, we will allow users to download the recommended track list as playlist to their very own Spotify account, after giving permission of course. Also, we can add a filter to display feature tracks, as well the latest drops from this artist.
 
 ## 2. Learning Goals
-The goal of this project is to learn how to use Spotify's Public API to query music data in an integrated way with the core music app we use everyday. Moreover, we want to explore ways to receive custom user inputs (such as picking tracks or albums) to trigger different outcomes, and also how we can better display and trigger user action from it - in this case, listening to the recommendations on Spotify's app!
+The goal of this project is to learn how to use Spotify's Public API to query music data in an integrated way with the core music app we use everyday. Moreover, we want to explore ways to receive custom user inputs (such as picking tracks or albums) to trigger different outcomes, and also how we can better design user action from it - in this case, listening to the recommendations on Spotify's app!
 
-Personally, Luiz wants to learn how to create an end-to-end application that is able to recommend something effective based on user taste. For Bruno, he wants to see if he can use code facilitate his day-to-day song-picking process.
+Personally, Luiz wants to learn how to create an end-to-end application that is able to recommend something effective based on user taste. For Bruno, he wants to see if he can use this code to facilitate his day-to-day song-picking process.
 
 ## 3. Implementation Plan
 Our plan is to use [Spotipy](https://spotipy.readthedocs.io/en/2.21.0/), which is a Python library for the Spotify Web API, to query and manipulate music data. This library will enable us to get artists, tracks and albums information, along with other relevant data such as similar artists and track popularity, which will be core to our backend application. 
@@ -53,4 +53,4 @@ The latter is inherent for a content recommendations project like ours. Still, w
 ## 7. Additional Course Content
 From what we learned so far, API requests using encoded URLs, storage and manipulation of data in lists/dictionaries, and Flask will be the 3 main tenets for our application. 
 
-To new content, we believe learning how to use client side APIs would be key to give us confidence on tackling our vision to connect user's Spotify account right away. Also, we restrained on a binary category input (tracks or albums), but other Flask form input types such as a date filter could help in querying more custom results to users. 
+Regarding new content, we believe learning how to use client side APIs would be key to give us confidence on tackling our vision to connect user's Spotify account right away. Also, we restrained on a binary category input (tracks or albums), but other Flask form input types such as a date filter could help in querying more custom results to users. 
