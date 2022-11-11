@@ -1,4 +1,4 @@
-# Damn Good Tracks Project
+# Damn Good Tracks Project 🎧💥
 
 ## 1. The Big Idea
 Our team listens to music everytime: studying, walking/driving to classes, working out at the gym, ... you name it. Still, when we try to find other songs to listen to, we fail. 
