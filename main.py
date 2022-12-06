@@ -20,10 +20,10 @@ def get_artistID(artist_name):
         correct_name = artist['name']
         if correct_name == artist_name:
             # print(artist['name'], artist['images'][0]['url'])
-            return artist['id']
+            return True, artist['id']
         else:
-            print(f'Oops, did you mean {correct_name}?')
-            return True
+            # print(f'Oops, did you mean {correct_name}?')
+            return False, correct_name
     else: 
         print("There is no artist with this name. Try again.")
         return True
@@ -58,15 +58,16 @@ def rec_songs(list_artists_IDs, tracks_per_artist=2):
     """
     tracks = {}
     for id in list_artists_IDs:
-        output = spotify.artist_top_tracks(id)
-        answers = output['tracks']
+        answers = spotify.artist_top_tracks(id)
+        answers = answers['tracks']
         sample_tracks = random.sample(answers, tracks_per_artist)
 
         for t in sample_tracks:
             track_id = t['id']
             track_name = t['name']
             track_artist = t['artists'][0]['name']
-            tracks[track_id] = {'name': track_name, 'artist': track_artist}
+            track_url = t['external_urls']['spotify']
+            tracks[track_id] = {'name': track_name, 'artist': track_artist, 'url': track_url}
 
     return tracks
 
@@ -79,22 +80,23 @@ def rec_albums(list_artists_IDs, albums_per_artist=1):
     """
     albums = {}
     for id in list_artists_IDs:
-        output = spotify.artist_albums(id, 'album', 'US')
-        answers = output['items']
+        answers = spotify.artist_albums(id, 'album', 'US')
+        answers = answers['items']
         sample_albums = random.sample(answers, albums_per_artist)
 
         for a in sample_albums:
             album_id = a['id']
             album_name = a['name']
             album_artist = a['artists'][0]['name']
-            albums[album_id] = {'name': album_name, 'artist': album_artist}
+            album_url = a['external_urls']['spotify']
+            albums[album_id] = {'name': album_name, 'artist': album_artist, 'url': album_url}
         
     return albums
 
 def main():
     id = get_artistID('Kanye West')
-    related = get_relatedArtists(id)
-    pprint(rec_albums(related))
+    related = get_relatedArtists(id[1])
+    pprint(rec_songs(related))
 
 if __name__ == '__main__':
     main()
