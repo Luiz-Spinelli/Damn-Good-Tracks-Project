@@ -20,18 +20,24 @@ def get_recs():
 
     return render_template('form.html') 
 
-@app.route('/songs/<artistID>')
+@app.route('/songs/<artistID>', methods=["GET", "POST"])
 def songs(artistID=None):
     if artistID:
         dict_songs = rec_songs(get_relatedArtists(artistID))
-        return render_template('song-result.html', output=dict_songs)
+        return render_template('song-result.html', output=dict_songs, artistID=artistID)
+    if request.method == "POST":
+        if request.form.get('shuffle'):
+            return redirect(url_for('songs', artistID=artistID))
     return redirect(url_for('/'))
 
-@app.route('/albums/<artistID>')
+@app.route('/albums/<artistID>', methods=["GET", "POST"])
 def albums(artistID=None):
     if artistID:
         dict_albums = rec_albums(get_relatedArtists(artistID))
-        return render_template('album-result.html', output=dict_albums)
+        return render_template('album-result.html', output=dict_albums, artistID=artistID)
+    if request.method == "POST":
+        if request.form.get('shuffle'):
+            return redirect(url_for('albums', artistID=artistID))
     return redirect(url_for('/'))
 
 # # if website domain is www.abc.com, http://www.abc.com/ will triger the function below, hello()
