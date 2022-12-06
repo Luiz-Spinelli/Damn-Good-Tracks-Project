@@ -30,13 +30,17 @@
 
 <div class = "container">
     <div class = 'center'>
+    <p>
+        If you like {{ name }}, check out these tracks!
+    </p>
+    <img src='{{ img }}'>
     <p class="darkgreen">
         {% for track in output.values() %}
         <a href = "{{ track['url'] }}">{{ track['name'] }}</a>, {{ track['artist'] }} <br>
         {% endfor %}
     </p>
     <form action="" method="post">
-        <input type = "submit" name="shuffle">Shuffle</input>
+        <input type = "submit" name="shuffle" value="Shuffle"></input>
     </form>
     </div>
 </div>

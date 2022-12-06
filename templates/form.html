@@ -12,7 +12,8 @@
     .container {
       height: 200px;
       position: relative;
-      border: 3px solid green;
+      border: 5px;
+      /* border: 3px solid green; */
     }
     
     .center {
@@ -27,12 +28,15 @@
 
 <div class = "container">
     <div class = 'center'>
+        <h1>
+            Damn Good Tracks - powered by <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" width="100px">
+        </h1>
         <form action="" method="post">
-            <label for="">Which artist would you similar tracks and albums recommendations? <input type="text" name="input"></label>
+            <p>Say an artist you like to get recommendations based from: <input type="text" name="input"></p>
+            <input type = "submit" name="songs" value="Search"> See similar tracks</input>
             <br>
-            <input type = "submit" name="songs">Check related tracks</input>
             <br>
-            <input type = "submit" name="albums">Check related albums</input>
+            <input type = "submit" name="albums" value="Search"> See similar albums</input>
         </form>
     </div>
 </div>

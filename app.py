@@ -1,7 +1,8 @@
 # build the Flask app here
 
 from flask import Flask, render_template, request, redirect, url_for
-from main import rec_albums, rec_songs, get_relatedArtists, get_artistID
+from main import get_artist, rec_albums, rec_songs, get_relatedArtists, get_artistID
+import urllib.request
 
 app = Flask(__name__)
 
@@ -24,7 +25,9 @@ def get_recs():
 def songs(artistID=None):
     if artistID:
         dict_songs = rec_songs(get_relatedArtists(artistID))
-        return render_template('song-result.html', output=dict_songs, artistID=artistID)
+        artist_name = get_artist(artistID)['name']
+        artist_img = get_artist(artistID)['images'][1]['url']
+        return render_template('song-result.html', output=dict_songs, name=artist_name, img=artist_img)
     if request.method == "POST":
         if request.form.get('shuffle'):
             return redirect(url_for('songs', artistID=artistID))
@@ -34,7 +37,9 @@ def songs(artistID=None):
 def albums(artistID=None):
     if artistID:
         dict_albums = rec_albums(get_relatedArtists(artistID))
-        return render_template('album-result.html', output=dict_albums, artistID=artistID)
+        artist_name = get_artist(artistID)['name']
+        artist_img = get_artist(artistID)['images'][1]['url']
+        return render_template('album-result.html', output=dict_albums, name=artist_name, img=artist_img)
     if request.method == "POST":
         if request.form.get('shuffle'):
             return redirect(url_for('albums', artistID=artistID))

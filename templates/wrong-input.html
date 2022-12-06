@@ -10,7 +10,7 @@
 
 <style>
     .container {
-      height: 200px;
+      height: 250px;
       position: relative;
       border: 3px solid green;
     }
@@ -27,10 +27,15 @@
 
 <div class = "container">
     <div class = 'center'>
+        <h1>
+            Damn Good Tracks - powered by <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" width="100px">
+        </h1>
         <form action="" method="post">
-            <p>Oops, did you mean {{ correct_name }}? Please try again.<input type="text" name="input"></p>
-            <input type = "submit" name="songs">Check related tracks</input>
-            <input type = "submit" name="albums">Check related albums</input>
+            <p>Oops, did you mean {{ correct_name }}? Please try again: <input type="text" name="input"></p>
+            <input type = "submit" name="songs" value="Search"> See similar tracks</input>
+            <br>
+            <br>
+            <input type = "submit" name="albums" value="Search"> See similar albums</input>
         </form>
     </div>
 </div>

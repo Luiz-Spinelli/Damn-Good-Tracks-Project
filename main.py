@@ -5,6 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from config import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET
 from pprint import pprint
 import random
+import urllib.request
 
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET))
 
@@ -90,11 +91,16 @@ def rec_albums(list_artists_IDs, albums_per_artist=1):
         
     return albums
 
+def get_artist(artistID):
+    return spotify.artist(artistID)
+
 def main():
-    id = get_artistID('Quadeca')
-    related = get_relatedArtists(id[1])
-    pprint(rec_albums(related))
-    
+    id = get_artistID('Bruno Mars')
+    # related = get_relatedArtists(id[1])
+    # pprint(rec_albums(related))
+    # pprint(get_artist(id[1]))
+    # artist_img = get_artist(id[1])['images'][-1]['url']
+    # urllib.request.urlretrieve(artist_img, "data/image.jpg")
 
 if __name__ == '__main__':
     main()
