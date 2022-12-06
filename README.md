@@ -6,27 +6,25 @@ To run the application, first you need to install the Spotipy package, which is 
 
 The `main.py` file contains the core logic of our application. It has a series of functions that interact with the Spotipy API. You can check a summary of the functions below:
 
-get_artistID, get_relatedArtists, rec_songs, rec_albums. 
-
 | Function     | Description |
 | ---------- | ----------- |
 | get_artistID    | Returns the artist ID relative to a string argument. Used as the building block to transform user query input into an artist ID. |
 | get_relatedArtists  | Returns a list of artist IDs similar to an artist, given their ID as argument. |
 | rec_songs     | Returns a dictionary of recommended tracks from a list of artists.  |
 | rec_albums   | Returns a dictionary of recommended albums from a list of artists.   |
-| get_artist   | Returns the Spotify object of an artist given their ID.    |
+| get_artist   | Returns the Spotify object of an artist given their ID. Used to display artist name and image in results page.    |
 
-The first two functions, artitsID and get_relatedArtists were used as building blocks for the two recommendation functions (rec_songs and rec_albums). The core logic diagram can be seen below: 
+The first two functions, `get_artistID` and `get_relatedArtists`were used as building blocks for the two recommendation functions (`rec_songs` and `rec_albums`). The core logic diagram can be seen below: 
 
 ![Functions' Diagram](data/diagram.jpg "Logic Diagram")
 
-In get_artistID function, the user input is searched as artist name. If it is indeed correct, the function returns the artist ID, and the application follows. Else, it returns the correct name found in the Spotify library and render a new page allowing the user to input the correct artist name. 
+In `get_artistID` function, the user input is searched as artist name. If it is indeed correct, the function returns the artist ID, and the application follows. Else, it returns the correct name found in the Spotify library and render a new page allowing the user to input the correct artist name. 
 
-In get_relatedArtist function, the artistID found previously is used to get a list of 10 related artists, according to Spotify. 
+In `get_relatedArtist` function, the artistID found previously is used to get a list of 10 related artists, according to Spotify. 
 
-In rec_songs function, for each of these artists, we randomly sample two of their best tracks - according to Spotify's API top tracks - and return the tracks in a dictionary with their names and main artist.
+In `rec_songs` function, for each of these artists, we randomly sample two of their best tracks - according to Spotify's API top tracks - and return the tracks in a dictionary with their names and main artist.
 
-Similarly, rec_albums use the artist IDs list from previous functions to find an album of each related artist, saving and returning an albums dictionary with the albums' names and respective artists.
+Similarly, `rec_albums` use the artist IDs list from previous functions to find an album of each related artist, saving and returning an albums dictionary with the albums' names and respective artists.
 
 ## Frontend
 
