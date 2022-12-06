@@ -10,8 +10,8 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(SP
 
 def get_artistID(artist_name):
     """
-    Input: artist name 
-    output: artistID 
+    Input: artist name (from the user)
+    Output: bool (if input is accurate), artistID 
     """
     results = spotify.search(q=artist_name, type='artist')
     items = results['artists']['items']
@@ -31,7 +31,7 @@ def get_artistID(artist_name):
 def get_relatedArtists(artistID, num=10):
     """
     Input: artistID
-    Output: list of related artists ID
+    Output: list of related artists IDs
     """
     answers = spotify.artist_related_artists(artistID)
     related_artists = answers['artists']
@@ -48,18 +48,15 @@ def get_relatedArtists(artistID, num=10):
 
 def rec_songs(list_artists_IDs, tracks_per_artist=2):
     """
-    Input: list of related artits ID
-    Recommendation algorithm (proposed by me & Bruno)
-        - pick to 10 related artists
-        - pick each related artists top 5 songs 
-        - assign all 50 songs into a list
-        - randomize by picking 20 out of 50 songs 
-    Output: list of track IDs
+    Input: list of artists IDs
+    Output: dict of recommended tracks
     """
     tracks = {}
     for id in list_artists_IDs:
         answers = spotify.artist_top_tracks(id)
         answers = answers['tracks']
+        if len(answers) == 0:  # edge case when artist has zero tracks
+            continue
         sample_tracks = random.sample(answers, tracks_per_artist)
 
         for t in sample_tracks:
@@ -73,15 +70,15 @@ def rec_songs(list_artists_IDs, tracks_per_artist=2):
 
 def rec_albums(list_artists_IDs, albums_per_artist=1):
     """
-    Input: list of related artits IDs
-    Recommendation algorithm/logic = TBD
-        - Pick 1 randomized album for each artist
-    Output: list of 10 final related albums
+    Input: list of artists IDs
+    Output: dict of recommended albums
     """
     albums = {}
     for id in list_artists_IDs:
         answers = spotify.artist_albums(id, 'album', 'US')
         answers = answers['items']
+        if len(answers) == 0:  # edge case when artist has zero albums
+            continue
         sample_albums = random.sample(answers, albums_per_artist)
 
         for a in sample_albums:
@@ -94,9 +91,10 @@ def rec_albums(list_artists_IDs, albums_per_artist=1):
     return albums
 
 def main():
-    id = get_artistID('Kanye West')
+    id = get_artistID('Quadeca')
     related = get_relatedArtists(id[1])
-    pprint(rec_songs(related))
+    pprint(rec_albums(related))
+    
 
 if __name__ == '__main__':
     main()
