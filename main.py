@@ -19,7 +19,7 @@ def get_artistID(artist_name):
     if len(items) > 0:
         artist = items[0]
         correct_name = artist['name']
-        if correct_name == artist_name:
+        if correct_name.lower() == artist_name.lower():
             # print(artist['name'], artist['images'][0]['url'])
             return True, artist['id']
         else:
