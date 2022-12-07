@@ -1,4 +1,4 @@
-# write the main functions here
+# main functions and backend logic here
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -92,6 +92,9 @@ def rec_albums(list_artists_IDs, albums_per_artist=1):
     return albums
 
 def get_artist(artistID):
+    """
+    function to retrieve artist object given ID
+    """
     return spotify.artist(artistID)
 
 def main():
